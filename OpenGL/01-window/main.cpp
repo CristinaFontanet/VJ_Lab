@@ -72,9 +72,9 @@ int main(int argc, char **argv)
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(640, 480);
+	glutInitWindowSize(840, 840);
 
-	glutCreateWindow(argv[0]);
+	glutCreateWindow(argv[0]); //Definir Callbacks per rebre events
 	glutDisplayFunc(drawCallback);
 	glutIdleFunc(idleCallback);
 	glutKeyboardFunc(keyboardDownCallback);
@@ -83,10 +83,10 @@ int main(int argc, char **argv)
 	glutMotionFunc(motionCallback);
 
 	// Game instance initialization
-	Game::instance().init();
+	Game::instance().init(); //<- es un singleton
 	prevTime = glutGet(GLUT_ELAPSED_TIME);
 	// GLUT gains control of the application
-	glutMainLoop();
+	glutMainLoop(); 	//comença a cridar els callbacks predefinits excepte el mouse i key
 
 	return 0;
 }

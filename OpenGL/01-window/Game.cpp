@@ -22,6 +22,9 @@ void Game::keyPressed(int key)
 {
 	if(key == 27) // Escape code
 		bPlay = false;
+	else if (key == '1') glClearColor(0.5f, 0.7f, 0.6f, 1.0f);
+	else if (key == '2')glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
 }
 
 void Game::keyReleased(int key)
