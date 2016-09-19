@@ -35,8 +35,10 @@ private:
 	float currentTime;
 	glm::mat4 projection;
 
-	int maxRange;
-	int currentRange;
+	int maxRange = 64;
+	int currentRange = 0;
+	float maxSF = 0.75f;
+	float sf = 0.0f;
 
 };
 
