@@ -2,7 +2,7 @@
 #include <GL/gl.h>
 #include "TexturedQuad.h"
 
-
+			//MINIMES I MAXIMES COORDENADES DEL QUAD
 TexturedQuad *TexturedQuad::createTexturedQuad(glm::vec2 geom[2], glm::vec2 texCoords[2], ShaderProgram &program)
 {
 	TexturedQuad *quad = new TexturedQuad(geom, texCoords, program);
@@ -13,6 +13,8 @@ TexturedQuad *TexturedQuad::createTexturedQuad(glm::vec2 geom[2], glm::vec2 texC
 
 TexturedQuad::TexturedQuad(glm::vec2 geom[2], glm::vec2 texCoords[2], ShaderProgram &program)
 {
+	//abans era de 12, ara de 24 x les coordenades de textures, q fan referencia al punt geometrics en questio.
+	//aixi es mes optim que no pas en dos vectors diferents
 	float vertices[24] = {geom[0].x, geom[0].y, texCoords[0].x, texCoords[0].y, 
 												geom[1].x, geom[0].y, texCoords[1].x, texCoords[0].y, 
 												geom[1].x, geom[1].y, texCoords[1].x, texCoords[1].y, 
