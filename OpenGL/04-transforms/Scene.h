@@ -35,6 +35,9 @@ private:
 	float currentTime;
 	glm::mat4 projection;
 
+	int maxRange;
+	int currentRange;
+
 };
 
 
