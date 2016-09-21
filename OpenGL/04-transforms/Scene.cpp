@@ -22,6 +22,7 @@ void Scene::init()
 	quad = Quad::createQuad(0.f, 0.f, 128.f, 128.f, program);
 	projection = glm::ortho(0.f, float(CAMERA_WIDTH - 1), float(CAMERA_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
+
 }
 
 void Scene::update(int deltaTime)
@@ -49,9 +50,9 @@ void Scene::render()
 	//A dalt a la dreta
 	program.setUniform4f("color", 0.0f, 1.0f, 1.0f, 1.0f);
 	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(384.f - currentRange, 48.f + currentRange, 0.f));
-	//	modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
-	//	modelview = glm::rotate(modelview, currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
-	//	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
+	modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
+	modelview = glm::scale(modelview, glm::vec3(1.0f - sf, 1.0f - sf, 1.0f));
+	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
 	program.setUniformMatrix4f("modelview", modelview);
 	quad->render();
 
@@ -59,7 +60,6 @@ void Scene::render()
 	program.setUniform4f("color", 1.0f, 0.0f, 1.0f, 1.0f);
 	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(128.f + currentRange, 304.f , 0.f));
 		modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
-	//modelview = glm::rotate(modelview, currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
 	modelview = glm::scale(modelview, glm::vec3(1.0f - sf, 1.0f - sf, 1.0f));
 	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
 	program.setUniformMatrix4f("modelview", modelview);
@@ -68,21 +68,28 @@ void Scene::render()
 	program.setUniform4f("color", 1.0f, 1.0f, 0.0f, 1.0f);
 	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(384.f - currentRange, 304.f , 0.f));
 	modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
-//	modelview = glm::rotate(modelview, -currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
 	modelview = glm::scale(modelview, glm::vec3(1.0f - sf, 1.0f - sf, 1.0f));
 	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
 	program.setUniformMatrix4f("modelview", modelview);
 	quad->render();
+
+	float rango = abs(maxRange) * 2;
 	if (currentRange < maxRange)  {
 		currentRange += 1;
+		tam = tam - (0.75 / rango);
+		progresion--;
 	}
 	else if (currentRange > maxRange) {
 		currentRange -= 1;
+		tam = tam + (0.75 / rango);
+		progresion++;
 	}
 	else {
 		maxRange = -currentRange;
 	}
-	sf = (abs(maxSF)*currentRange) / abs(maxRange);
+
+	sf = (0.75 * (progresion / rango));;
+	//sf = (abs(maxSF)*currentRange) / abs(maxRange);
 }
 
 void Scene::initShaders()

@@ -40,6 +40,10 @@ private:
 	float maxSF = 0.75f;
 	float sf = 0.0f;
 
+	float xquad = -50;
+	float maxX = -50;
+	float tam = 1;
+	float progresion = 100;
 };
 
 
