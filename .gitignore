@@ -243,9 +243,13 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
+*.vcxproj
+*.lastbuildstate
+*.tlog
+*.idb
 !*.dll
 !*.ttf
 !*.png
 !**/*.dll
+
 
