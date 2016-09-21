@@ -15,9 +15,9 @@ class Circle
 
 public:
 	// Quads can only be created inside an OpenGL context
-	static Circle *createCircle(float x, float y, float width, float height, ShaderProgram &program);
+	static Circle *createCircle(float x, float y, float radius, ShaderProgram &program);
 
-	Circle(float x, float y, float width, float height, ShaderProgram &program);
+	Circle(float x, float y, float radius, ShaderProgram &program);
 
 	void render() const;
 	void free();
@@ -26,7 +26,7 @@ private:
 	GLuint vao;
 	GLuint vbo;
 	GLint posLocation;
-
+	static const int triangleAmount = 120; //# of triangles used to draw circle
 };
 
 

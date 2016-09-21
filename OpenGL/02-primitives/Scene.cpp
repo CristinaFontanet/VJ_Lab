@@ -21,7 +21,7 @@ void Scene::init()
 {
 	initShaders();
 	for(int i = 0; i < 4; i++)
-		quads[i] = Circle::createCircle(-0.75f + (i % 2), -0.75f + (i / 2), 0.5f, 0.5f, program);
+		quads[i] = Circle::createCircle(-0.75f + (i % 2), -0.75f + (i / 2), 0.2f, program);
 }
 
 void Scene::update(int deltaTime)
