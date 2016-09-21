@@ -31,13 +31,15 @@ private:
 	void initShaders();
 
 private:
-	Quad *quad;
 	Texture texs[2];
 	TexturedQuad *texQuad[4];
 	ShaderProgram simpleProgram, texProgram;
 	float currentTime;
 	glm::mat4 projection;
 
+	int maxRange = 150;
+	int posyMario = 48;
+	int currentRange = 0;
 };
 
 

@@ -6,13 +6,10 @@
 
 Scene::Scene()
 {
-	quad = NULL;
 }
 
 Scene::~Scene()
 {
-	if(quad != NULL)
-		delete quad;
 	for(int i=0; i<3; i++)
 		if(texQuad[i] != NULL)
 			delete texQuad[i];
@@ -25,7 +22,6 @@ void Scene::init()
 	glm::vec2 texCoords[2] = {glm::vec2(0.f, 0.f), glm::vec2(1.f, 1.f)};
 
 	initShaders();
-	quad = Quad::createQuad(0.f, 0.f, 128.f, 128.f, simpleProgram);
 	//mario
 	texCoords[0] = glm::vec2(0.f, 0.f); texCoords[1] = glm::vec2(0.5f, 0.5f);
 	texQuad[0] = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
@@ -55,25 +51,11 @@ void Scene::render()
 {
 	glm::mat4 modelview;
 
-	simpleProgram.use();
-	simpleProgram.setUniformMatrix4f("projection", projection);
-	simpleProgram.setUniform4f("color", 0.2f, 0.2f, 0.8f, 1.0f);
-//Quadrat simple
-	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(128.f, 48.f, 0.f));
-	modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
-	modelview = glm::rotate(modelview, -currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
-	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
-	simpleProgram.setUniformMatrix4f("modelview", modelview);
-	quad->render();
-
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
 //Mario
-	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(384.f, 48.f, 0.f));
-	modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
-	modelview = glm::rotate(modelview, currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
-	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
+	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(384.f,posyMario, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[0]->render(texs[0]);
 //Estrella
@@ -83,21 +65,27 @@ void Scene::render()
 	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[1]->render(texs[0]);
-
-	//Bolet
-	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(200.f, 200.f, 0.f));
+//Bolet
+	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(320.f+currentRange, 200.f, 0.f));
 	modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
 	modelview = glm::rotate(modelview, currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
 	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[3]->render(texs[0]);
 //Roques
-	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(384.f, 304.f, 0.f));
-	modelview = glm::translate(modelview, glm::vec3(64.f, 64.f, 0.f));
-	modelview = glm::rotate(modelview, -currentTime / 1000.f, glm::vec3(0.0f, 0.0f, 1.0f));
-	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
+	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(300.f, 354.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[2]->render(texs[1]);
+
+	if (currentRange < maxRange) {
+		currentRange += 1;
+	}
+	else if (currentRange > maxRange) {
+		currentRange -= 1;
+	}
+	else {
+		maxRange = -currentRange;
+	}
 }
 
 void Scene::initShaders()
