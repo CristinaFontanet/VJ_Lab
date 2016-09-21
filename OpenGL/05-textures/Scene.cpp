@@ -6,10 +6,12 @@
 
 Scene::Scene()
 {
+	cel = NULL;
 }
 
 Scene::~Scene()
 {
+	if (cel != NULL) delete cel;
 	for(int i=0; i<3; i++)
 		if(texQuad[i] != NULL)
 			delete texQuad[i];
@@ -22,6 +24,11 @@ void Scene::init()
 	glm::vec2 texCoords[2] = {glm::vec2(0.f, 0.f), glm::vec2(1.f, 1.f)};
 
 	initShaders();
+	//Cel
+	cel = Quad::createQuad(0.f, 0.f, 640.f, 480.f, simpleProgram);
+
+	//terra = Quad::createQuad(0.f, 0.f, 640.f, 128.f, simpleProgram);
+
 	//mario
 	texCoords[0] = glm::vec2(0.f, 0.f); texCoords[1] = glm::vec2(0.5f, 0.5f);
 	texQuad[0] = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
@@ -31,13 +38,15 @@ void Scene::init()
 	//bolet
 	texCoords[0] = glm::vec2(0.f, 0.5f); texCoords[1] = glm::vec2(0.5f, 1.f);
 	texQuad[3] = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
-	//roques
-	texCoords[0] = glm::vec2(0.f, 0.f); texCoords[1] = glm::vec2(2.f, 2.f);
-	texQuad[2] = TexturedQuad::createTexturedQuad(geom, texCoords, texProgram);
-	
+
+	//terra
+	glm::vec2 geomTerra[2] = { glm::vec2(0.f, 0.f), glm::vec2(640.f, 128.f) };
+	texCoords[0] = glm::vec2(0.f, 0.f); texCoords[1] = glm::vec2(1.f, 1.f);
+	texQuad[2] = TexturedQuad::createTexturedQuad(geomTerra, texCoords, texProgram);
 	// Load textures
 	texs[0].loadFromFile("images/varied.png", TEXTURE_PIXEL_FORMAT_RGBA);
-	texs[1].loadFromFile("images/rocks.jpg", TEXTURE_PIXEL_FORMAT_RGB);
+	texs[1].loadFromFile("images/brick.png", TEXTURE_PIXEL_FORMAT_RGB);
+	texs[2].loadFromFile("images/rocks.jpg", TEXTURE_PIXEL_FORMAT_RGB);
 	projection = glm::ortho(0.f, float(CAMERA_WIDTH - 1), float(CAMERA_HEIGHT - 1), 0.f);
 	currentTime = 0.0f;
 }
@@ -51,9 +60,20 @@ void Scene::render()
 {
 	glm::mat4 modelview;
 
+	//Cel
+	simpleProgram.use();
+	simpleProgram.setUniformMatrix4f("projection", projection);
+	simpleProgram.setUniform4f("color", 0.2f, 0.2f, 0.7f, 1.f);
+	simpleProgram.setUniformMatrix4f("modelview", modelview);
+	cel->render();
+
 	texProgram.use();
 	texProgram.setUniformMatrix4f("projection", projection);
 	texProgram.setUniform4f("color", 1.0f, 1.0f, 1.0f, 1.0f);
+	//terra
+	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(0.f, 354.f, 0.f));
+	texProgram.setUniformMatrix4f("modelview", modelview);
+	texQuad[2]->render(texs[1]);
 //Mario
 	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(384.f,posyMario, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
@@ -72,10 +92,6 @@ void Scene::render()
 	modelview = glm::translate(modelview, glm::vec3(-64.f, -64.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[3]->render(texs[0]);
-//Roques
-	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(300.f, 354.f, 0.f));
-	texProgram.setUniformMatrix4f("modelview", modelview);
-	texQuad[2]->render(texs[1]);
 
 	if (currentRange < maxRange) {
 		currentRange += 1;
