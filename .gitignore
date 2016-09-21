@@ -20,8 +20,6 @@
 #[Bb]uild/
 #bld/
 #[Bb]in/
-![Bb]in/*.dll
-![Bb]in/**.dll
 #[Oo]bj/
 
 # Visual Studio 2015 cache/options directory
@@ -38,8 +36,8 @@
 TestResult.xml
 
 # Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
+#[Dd]ebugPS/
+#[Rr]eleasePS/
 dlldata.c
 
 # DNX
@@ -136,7 +134,7 @@ DocProject/Help/Html2
 DocProject/Help/html
 
 # Click-Once directory
-publish/
+#publish/
 
 # Publish Web Output
 *.[Pp]ublish.xml
