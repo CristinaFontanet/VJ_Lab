@@ -20,6 +20,7 @@
 [Bb]uild/
 bld/
 [Bb]in/
+![Bb]in/*.dll
 ![Bb]in/**.dll
 [Oo]bj/
 
@@ -245,7 +246,6 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
-!libs/*
 !*.dll
 !*.ttf
 !*.png
