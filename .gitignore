@@ -247,3 +247,5 @@ ModelManifest.xml
 !*.dll
 !*.ttf
 !*.png
+!**/*.dll
+!libs/
