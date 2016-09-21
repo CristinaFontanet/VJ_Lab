@@ -244,8 +244,8 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 
+!libs/*
 !*.dll
 !*.ttf
 !*.png
 !**/*.dll
-!.libs/*
