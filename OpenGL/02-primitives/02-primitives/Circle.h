@@ -26,7 +26,7 @@ private:
 	GLuint vao;
 	GLuint vbo;
 	GLint posLocation;
-	static const int triangleAmount = 10; //# of triangles used to draw circle
+	static const int triangleAmount = 120; //# of triangles used to draw circle
 };
 
 
