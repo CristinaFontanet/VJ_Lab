@@ -2,6 +2,12 @@
 #include <GL/glut.h>
 #include "Game.h"
 
+#define KEY_UP 65
+#define KEY_DOWN 66
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+#define KEY_ESC 27
+
 
 void Game::init()
 {
@@ -25,8 +31,13 @@ void Game::render()
 
 void Game::keyPressed(int key)
 {
-	if(key == 27) // Escape code
+
+	if(key == KEY_ESC) // Escape code
 		bPlay = false;
+	else if( key== GLUT_KEY_UP) bPlay = false;
+	else if (key == KEY_DOWN) bPlay = false;
+	else if (key == KEY_LEFT) bPlay = false;
+	else if (key == KEY_RIGHT) bPlay = false;
 	keys[key] = true;
 }
 

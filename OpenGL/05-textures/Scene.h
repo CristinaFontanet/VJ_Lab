@@ -38,7 +38,7 @@ private:
 	float currentTime;
 	glm::mat4 projection;
 
-	int maxRange = 150;
+	int maxRange = 210;
 	int posyMario = 48;
 	int currentRange = 0;
 };
