@@ -18,6 +18,15 @@ Scene::~Scene()
 }
 
 
+void  Scene::marioUp() {
+	if(posyMario >=4) posyMario -= 5;
+}
+
+void  Scene::marioDown() {
+	if (posyMario <= 273) posyMario += 5;
+}
+
+
 void Scene::init()
 {
 	glm::vec2 geom[2] = {glm::vec2(0.f, 0.f), glm::vec2(128.f, 128.f)};

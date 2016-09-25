@@ -34,8 +34,8 @@ void Game::keyPressed(int key)
 
 	if(key == KEY_ESC) // Escape code
 		bPlay = false;
-	else if( key== GLUT_KEY_UP) bPlay = false;
-	else if (key == KEY_DOWN) bPlay = false;
+	else if( key== 'W' || key == 'w') scene.marioUp();
+	else if (key == 'S' || key == 's')scene.marioDown();
 	else if (key == KEY_LEFT) bPlay = false;
 	else if (key == KEY_RIGHT) bPlay = false;
 	keys[key] = true;

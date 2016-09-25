@@ -26,6 +26,8 @@ public:
 	void init();
 	void update(int deltaTime);
 	void render();
+	void marioUp();
+	void marioDown();
 
 private:
 	void initShaders();
