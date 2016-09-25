@@ -44,9 +44,12 @@ private:
 	int windowHeight;
 	int windowWidth;
 
-	int maxRange = 210;
+
 	int posyMario = 48;
-	int currentRange = 0;
+
+	bool boletDreta = false;
+	int posxBolet;
+	int boletWidth = 128;
 
 };
 

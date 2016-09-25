@@ -26,6 +26,7 @@ void Scene::init() {
 	windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
 	windowWidth = glutGet(GLUT_WINDOW_WIDTH);
 	currentTime = 0.0f;
+	posxBolet = windowWidth / 2;
 
 	// Load textures
 	texs[0].loadFromFile("images/varied.png", TEXTURE_PIXEL_FORMAT_RGBA);
@@ -100,13 +101,20 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[1]->render(texs[0]);
 	//Bolet
-	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(280.f + currentRange, 300.f, 0.f));
+	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(posxBolet, 300.f, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[3]->render(texs[0]);
-
 //Text
-
 	text.render("Videogames!!!", glm::vec2(10, CAMERA_HEIGHT-20), 32, glm::vec4(1, 1, 1, 1));
+	if (boletDreta) {
+		if (posxBolet > 0-boletWidth/4) --posxBolet;
+		else boletDreta = false;
+	}
+	else {
+		if (posxBolet < windowWidth-3*boletWidth/4) ++posxBolet;
+		else boletDreta = true;
+	}
+	//Moviment
 
 }
 
