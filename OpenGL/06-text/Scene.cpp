@@ -105,14 +105,22 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[3]->render(texs[0]);
 //Text
+	string marcador = "Rebots: " + std::to_string(rebots);
+	text.render(marcador, glm::vec2(windowWidth/2,35), 32, glm::vec4(1, 1, 1, 1));
 	text.render("Videogames!!!", glm::vec2(10, CAMERA_HEIGHT-20), 32, glm::vec4(1, 1, 1, 1));
 	if (boletDreta) {
 		if (posxBolet > 0-boletWidth/4) --posxBolet;
-		else boletDreta = false;
+		else {
+			boletDreta = false;
+			++rebots;
+		}
 	}
 	else {
 		if (posxBolet < windowWidth-3*boletWidth/4) ++posxBolet;
-		else boletDreta = true;
+		else {
+			boletDreta = true;
+			++rebots;
+		}
 	}
 	//Moviment
 

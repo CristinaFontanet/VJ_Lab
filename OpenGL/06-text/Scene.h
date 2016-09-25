@@ -51,6 +51,9 @@ private:
 	int posxBolet;
 	int boletWidth = 128;
 
+
+	int rebots = 0;
+
 };
 
 
