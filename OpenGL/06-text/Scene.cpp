@@ -25,6 +25,20 @@ void Scene::canviTextBolet() {
 }
 
 
+void  Scene::marioUp() {
+	if (posyMario >= 4) posyMario -= 5;
+}
+void  Scene::marioDown() {
+	if (posyMario <= 273) posyMario += 5;
+}
+
+void Scene::marioLeft() {
+	if (posxMario >= -20) posxMario -= 5;
+}
+void Scene::marioRight() {
+	if (posxMario <= windowWidth-3*boletWidth/4) posxMario += 5;
+}
+
 void Scene::init() {
 	//init vars
 	windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
@@ -94,7 +108,7 @@ void Scene::render()
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[2]->render(texs[1]);
 	//Mario
-	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(384.f, posyMario, 0.f));
+	modelview = glm::translate(glm::mat4(1.0f), glm::vec3(posxMario, posyMario, 0.f));
 	texProgram.setUniformMatrix4f("modelview", modelview);
 	texQuad[0]->render(texs[0]);
 	//Estrella

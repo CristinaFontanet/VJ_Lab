@@ -28,6 +28,10 @@ public:
 	void update(int deltaTime);
 	void render();
 	void canviTextBolet();
+	void marioUp();
+	void marioDown();
+	void marioLeft();
+	void marioRight();
 
 private:
 	void initShaders();
@@ -47,6 +51,7 @@ private:
 
 
 	int posyMario = 48;
+	int posxMario = 384;
 
 	bool boletDreta = false;
 	int posxBolet;
