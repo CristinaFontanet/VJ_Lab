@@ -20,6 +20,10 @@ Scene::~Scene()
 			delete texQuad[i];
 }
 
+void Scene::canviTextBolet() {
+	showBoletText = !showBoletText;
+}
+
 
 void Scene::init() {
 	//init vars
@@ -107,7 +111,11 @@ void Scene::render()
 //Text
 	string marcador = "Rebots: " + std::to_string(rebots);
 	text.render(marcador, glm::vec2(windowWidth/2,35), 32, glm::vec4(1, 1, 1, 1));
-	text.render("Videogames!!!", glm::vec2(10, CAMERA_HEIGHT-20), 32, glm::vec4(1, 1, 1, 1));
+	text.render("Clica b per fer desaparèixer el text", glm::vec2(10, CAMERA_HEIGHT-20), 32, glm::vec4(0, 0.56, 0, 1));
+	if (showBoletText) {
+		text.render("Bolet", glm::vec2(posxBolet+25, 330), 32, glm::vec4(1, 1, 1, 1));
+	}
+	//Moviment
 	if (boletDreta) {
 		if (posxBolet > 0-boletWidth/4) --posxBolet;
 		else {
@@ -122,7 +130,6 @@ void Scene::render()
 			++rebots;
 		}
 	}
-	//Moviment
 
 }
 

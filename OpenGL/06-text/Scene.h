@@ -27,6 +27,7 @@ public:
 	void init();
 	void update(int deltaTime);
 	void render();
+	void canviTextBolet();
 
 private:
 	void initShaders();
@@ -53,6 +54,7 @@ private:
 
 
 	int rebots = 0;
+	bool showBoletText = true;
 
 };
 

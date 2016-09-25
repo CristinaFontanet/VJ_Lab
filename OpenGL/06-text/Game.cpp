@@ -27,6 +27,9 @@ void Game::keyPressed(int key)
 {
 	if(key == 27) // Escape code
 		bPlay = false;
+	if (key == 'B' || key == 'b') {
+		scene.canviTextBolet();
+	}
 	keys[key] = true;
 }
 
