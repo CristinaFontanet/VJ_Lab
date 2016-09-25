@@ -63,7 +63,7 @@ void Scene::render()
 	//Cel
 	simpleProgram.use();
 	simpleProgram.setUniformMatrix4f("projection", projection);
-	simpleProgram.setUniform4f("color", 0.2f, 0.2f, 0.7f, 1.f);
+	simpleProgram.setUniform4f("color", 0.53f, 0.8f, 0.98f, 1.f);
 	simpleProgram.setUniformMatrix4f("modelview", modelview);
 	cel->render();
 
