@@ -26,6 +26,12 @@ void  Scene::marioDown() {
 	if (posyMario <= 273) posyMario += 5;
 }
 
+void Scene::marioJump() {
+	if (!isMarioJumping) {
+		isMarioJumping = true;
+		if (posyMario <= 273) posyMario -= 2 * gravity;
+	}
+}
 
 void Scene::init()
 {

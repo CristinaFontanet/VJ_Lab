@@ -36,6 +36,7 @@ void Game::keyPressed(int key)
 		bPlay = false;
 	else if( key== 'W' || key == 'w') scene.marioUp();
 	else if (key == 'S' || key == 's')scene.marioDown();
+	else if (key == 'c' || key == 'C')scene.marioJump();
 	else if (key == KEY_LEFT) bPlay = false;
 	else if (key == KEY_RIGHT) bPlay = false;
 	keys[key] = true;
