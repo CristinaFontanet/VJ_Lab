@@ -27,18 +27,39 @@ public:
 	void init();
 	void update(int deltaTime);
 	void render();
+	void canviTextBolet();
+	void marioUp();
+	void marioDown();
+	void marioLeft();
+	void marioRight();
 
 private:
 	void initShaders();
 
 private:
-	Quad *quad;
+	Quad *cel;
 	Texture texs[2];
-	TexturedQuad *texQuad[3];
+	TexturedQuad *texQuad[4];
 	ShaderProgram simpleProgram, texProgram;
 	float currentTime;
 	glm::mat4 projection;
 	Text text;
+
+
+	int windowHeight;
+	int windowWidth;
+
+
+	int posyMario = 48;
+	int posxMario = 384;
+
+	bool boletDreta = false;
+	int posxBolet;
+	int boletWidth = 128;
+
+
+	int rebots = 0;
+	bool showBoletText = true;
 
 };
 

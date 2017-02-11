@@ -27,6 +27,11 @@ void Game::keyPressed(int key)
 {
 	if(key == 27) // Escape code
 		bPlay = false;
+	else if (key == 'B' || key == 'b') scene.canviTextBolet();
+	else if (key == 'W' || key == 'w') scene.marioUp();
+	else if (key == 'S' || key == 's')scene.marioDown();
+	else if (key == 'A' || key == 'a') scene.marioLeft();
+	else if (key == 'D' || key == 'd')scene.marioRight();
 	keys[key] = true;
 }
 

@@ -28,6 +28,7 @@ public:
 	void render();
 	void marioUp();
 	void marioDown();
+	void marioJump();
 
 private:
 	void initShaders();
@@ -43,6 +44,10 @@ private:
 	int maxRange = 210;
 	int posyMario = 48;
 	int currentRange = 0;
+
+
+	bool isMarioJumping = false;
+	float gravity = 1.0f;
 };
 
 
